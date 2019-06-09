@@ -37,7 +37,9 @@ func(p *Post) Create(w http.ResponseWriter, r *http.Request){
 	newID, err := p.repo.Create(r.Context(), &post)
 	fmt.Println(newID)
 	if err != nil{
-		respondWithError(w, http.StatusInternalServerError, "Server Error")
+		// respondWithError(w, http.StatusInternalServerError, "Server Error") //creating a change
+		respondWithError(w, http.StatusInternalServerError, err.Error()) //creating a change
+
 	}
 	respondwithJSON(w, http.StatusCreated, map[string]string{"message":"Successfully Created"})
 }
@@ -49,7 +51,7 @@ func (p *Post) Update(w http.ResponseWriter, r *http.Request){
 	payload, err := p.repo.Update(r.Context(), &data)
 
 	if err!=nil{
-		respondWithError(w, http.StatusInternalServerError, "Server Error")
+		respondWithError(w, http.StatusInternalServerError, err.Error())
 	}
 	respondwithJSON(w, http.StatusOK, payload)
 }
@@ -70,7 +72,7 @@ func (p *Post) Delete(w http.ResponseWriter, r *http.Request){
 	_, err := p.repo.Delete(r.Context(), int64(id))
 
 	if err!=nil{
-		respondWithError(w, http.StatusInternalServerError, "Server Error")
+		respondWithError(w, http.StatusInternalServerError, err.Error())
 	}
 	respondwithJSON(w, http.StatusMovedPermanently, map[string] string{"message":"Delete Successfully"})
 }
