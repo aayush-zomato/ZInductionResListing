@@ -14,9 +14,9 @@ import
 
 const (
 	dbName = "reslisting"
-    dbPass = "2601"
-    dbHost = "localhost"
-    dbPort = "33066"
+    dbPass = "@Dhruv2601"
+	dbHost = "127.0.0.1"
+    dbPort = "3306"
 )
 
 func main() {
@@ -35,8 +35,8 @@ func main() {
 		rt.Mount("/posts", postRouter(pHandler))
 	})
 
-	fmt.Println("Server listen at: 8005")
-	http.ListenAndServe(":8005", r)
+	fmt.Println("Server listen at: 8080")
+	http.ListenAndServe(":8080", r)
 }
 
 func postRouter(pHandler *ph.Post) http.Handler {

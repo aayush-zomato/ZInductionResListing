@@ -39,7 +39,6 @@ func(p *Post) Create(w http.ResponseWriter, r *http.Request){
 	if err != nil{
 		// respondWithError(w, http.StatusInternalServerError, "Server Error") //creating a change
 		respondWithError(w, http.StatusInternalServerError, err.Error()) //creating a change
-
 	}
 	respondwithJSON(w, http.StatusCreated, map[string]string{"message":"Successfully Created"})
 }

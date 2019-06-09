@@ -16,13 +16,16 @@ var dbConn = &DB{}
 func ConnectSQL(host, port, uname, pass, dbname string) (*DB, error) {
 	dbSource := fmt.Sprintf(
 		"root:%s@tcp(%s:%s)/%s?charset=utf8",
+
 		pass,
 		host,
 		port,
 		dbname,
 	)
+	// dbSource := fmt.Sprintf("/%2s", dbname)
 
 	d,err := sql.Open("mysql", dbSource)
+	
 	if err != nil {
 		panic(err)
 	}
